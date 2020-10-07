@@ -148,7 +148,7 @@ function spawnEnemies() {
     }, 1000)
 }
 
-window.addEventListener('click', () => {
+document.addEventListener('click', () => {
         // console.log(projectiles)
         const angle = Math.atan2(event.clientY - canvas.height / 2, event.clientX - canvas.width / 2);
         const velocity = {
