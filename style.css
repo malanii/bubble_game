@@ -44,10 +44,17 @@ h1{
     border: transparent;
     font-size: 18px;
     width: 100%;
-/*color: #bcbbc9;*/
-    /*font-weight: 800;*/
 }
 .results button:focus{
     outline: none;
     background: linear-gradient(90deg, rgba(29, 27, 76, 1) 0%, rgba(111, 255, 206, 1) 50%, rgba(29, 27, 76, 1) 100%);
+}
+@media only screen and (min-width:320px) and (max-width:720px){
+    .score-wrapper span{
+        font-size: 35px;
+    }
+    .results{
+        width: 80%;
+    }
+
 }
