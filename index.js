@@ -126,26 +126,59 @@ function init() {
 
 
 function spawnEnemies() {
-    setInterval(() => {
-        let x;
-        let y;
-        const radius = Math.random() * (30 - 4) + 4;
-        if (Math.random() < 0.5) {
-            x = Math.random() < 0.5 ? 0 - radius : canvas.width + radius;
-            y = Math.random() * canvas.height;
-        } else {
-            y = Math.random() < 0.5 ? 0 - radius : canvas.height + radius;
-            x = Math.random() * canvas.weight;
-        }
-        const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
-        const angle = Math.atan2(canvas.height / 2 - y, canvas.width / 2 - x);
-        const velocity = {
-            x: Math.cos(angle),
-            y: Math.sin(angle),
-        };
-        enemies.push(new Enemy(x, y, radius, color, velocity))
+    console.log(innerWidth, innerHeight);
 
-    }, 1000)
+    let x;
+    let y;
+    if(innerWidth < 720){
+
+        setInterval(() => {
+
+           let radius = Math.random() * (30 - 4) + 16;
+            if (Math.random() < 0.5) {
+                x = Math.random() < 0.5 ? 0 - radius : canvas.width + radius;
+                y = Math.random() * canvas.height;
+            } else {
+                y = Math.random() < 0.5 ? 0 - radius : canvas.height + radius;
+                x = Math.random() * canvas.weight;
+            }
+            const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+            const angle = Math.atan2(canvas.height / 2 - y, canvas.width / 2 - x);
+            const velocity = {
+                x: Math.cos(angle),
+                y: Math.sin(angle),
+            };
+            enemies.push(new Enemy(x, y, radius, color, velocity))
+// console.log(new Enemy(x, y, radius, color, velocity))
+        }, 1000)
+
+    } else{
+        setInterval(() => {
+
+            const radius = Math.random() * (30 - 4) + 4;
+            if (Math.random() < 0.5) {
+                x = Math.random() < 0.5 ? 0 - radius : canvas.width + radius;
+                y = Math.random() * canvas.height;
+            } else {
+                y = Math.random() < 0.5 ? 0 - radius : canvas.height + radius;
+                x = Math.random() * canvas.weight;
+            }
+            const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+            const angle = Math.atan2(canvas.height / 2 - y, canvas.width / 2 - x);
+            const velocity = {
+                x: Math.cos(angle),
+                y: Math.sin(angle),
+            };
+            enemies.push(new Enemy(x, y, radius, color, velocity))
+
+        }, 1000)
+
+
+    }
+
+
+
+
 }
 
 document.addEventListener('click', () => {
@@ -159,19 +192,6 @@ document.addEventListener('click', () => {
         // console.log(angle)
     }
 );
-
-window.addEventListener('touchend', () => {
-        // console.log(projectiles)
-        const angle = Math.atan2(event.clientY - canvas.height / 2, event.clientX - canvas.width / 2);
-        const velocity = {
-            x: Math.cos(angle) * 5,
-            y: Math.sin(angle) * 5,
-        };
-        projectiles.push(new Projectile(canvas.width / 2, canvas.height / 2, 5, "white", velocity))
-        // console.log(angle)
-    }
-);
-
 
 startGameBtn.addEventListener('click', () => {
     init();
@@ -214,6 +234,8 @@ function animete() {
         }
     });
     enemies.forEach((enemy, index) => {
+
+
         enemy.update();
         const dist = Math.hypot(player.x - enemy.x, player.y - enemy.y,);
 
