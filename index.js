@@ -134,7 +134,7 @@ function spawnEnemies() {
 
         setInterval(() => {
 
-           let radius = Math.random() * (30 - 4) + 10;
+           let radius = Math.random() * (30 - 4) + 7;
             if (Math.random() < 0.5) {
                 x = Math.random() < 0.5 ? 0 - radius : canvas.width + radius;
                 y = Math.random() * canvas.height;
